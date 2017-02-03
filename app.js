@@ -23,12 +23,18 @@ const router = new Router();
 
 app.keys = [settings.cookieSecret];
 
+const CONFIG = {
+  key: 'koa:sess',
+  maxAge: 86400000,
+  httpOnly: true,
+  signed: true,
+};
+
 app
   .use(convert(favicon(`${__dirname}/public/favicon.ico`)))
   .use(convert(bodyparser()))
-  .use(convert(session(app)))
+  .use(convert(session(CONFIG, app)))
   .use(flash())
-  .use(sess)
   .use(convert(logger()))
   .use(convert(statc(__dirname + '/public')))
   .use(views(`${__dirname}/views`, {

@@ -3,7 +3,9 @@ import Router from 'koa-router'
 const router = new Router();
 
 router.get('/', ctx => {
-  ctx.body = 'this a users response!';
+  ctx.session.user = null;
+  ctx.flash.set({ success: 'logout success.' });
+  ctx.redirect('/');
 });
 
 export default router
