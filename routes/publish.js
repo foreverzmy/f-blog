@@ -1,13 +1,23 @@
 import Router from 'koa-router'
 
+import publish from '../lib/publish'
+
 const router = new Router();
 
-router.get('/', ctx => {
-  ctx.body = 'this a users response!';
+router.get('/', async(ctx, next) => {
+  ctx.state = {
+    title: '注册',
+    user: ctx.session.user,
+    success: ctx.flash.get('success'),
+    error: ctx.flash.get('error')
+  };
+  await ctx.render('publish', {});
+  await next();
 });
 
-router.post('/', ctx => {
-
+router.post('/', async(ctx, next) => {
+  await publish(ctx);
+  await next();
 })
 
 export default router

@@ -11,6 +11,7 @@ import flash from 'koa-flash-simple'
 
 import settings from './lib/settings'
 import sess from './lib/sessionsetting'
+import { checkLogin, checkNotLogin } from './lib/checkLog'
 
 import index from './routes/index'
 import login from './routes/login'
@@ -45,10 +46,10 @@ app
 
 router
   .use('/', index.routes()) // 首页
-  .use('/login', login.routes()) // 首页
-  .use('/register', register.routes()) // 用户注册
-  .use('/publish', publish.routes()) // 发表文章
-  .use('/logout', logout.routes()) // 登出
+  .use('/login', checkLogin, login.routes()) // 用户登录
+  .use('/register', checkLogin, register.routes()) // 用户注册
+  .use('/publish', checkNotLogin, publish.routes()) // 发表文章
+  .use('/logout', checkNotLogin, logout.routes()) // 登出
 
 app.on('error', function(err, ctx) {
   console.log(err)

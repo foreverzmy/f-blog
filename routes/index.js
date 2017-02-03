@@ -1,14 +1,17 @@
 import Router from 'koa-router'
 
+import getArticles from '../lib/index'
+
 const router = new Router();
 
 router.get('/', async ctx => {
-  console.log(ctx.session)
+  let articles = await getArticles(ctx);
   ctx.state = {
     title: '主页',
     user: ctx.session.user,
     success: ctx.flash.get('success'),
-    error: ctx.flash.get('error')
+    error: ctx.flash.get('error'),
+    arcs: articles
   };
   await ctx.render('index', {});
 });
