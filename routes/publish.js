@@ -6,7 +6,7 @@ const router = new Router();
 
 router.get('/', async(ctx, next) => {
   ctx.state = {
-    title: '注册',
+    title: '发表',
     user: ctx.session.user,
     success: ctx.flash.get('success'),
     error: ctx.flash.get('error')

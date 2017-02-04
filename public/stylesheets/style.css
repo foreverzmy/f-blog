@@ -19,11 +19,12 @@ p {
 header {
   padding: .5em 0;
   border-bottom: 1px solid #ccc;
+  margin-left: -3em;
 }
 
 nav {
   position: fixed;
-  left: 12em;
+  left: 8em;
   font-size: 1.1em;
   text-transform: uppercase;
   width: 9em;
@@ -44,6 +45,8 @@ nav a:hover {
 }
 
 article {
+  position: absolute;
+  left: 30em;
   font-size: 16px;
   padding-top: .5em;
 }

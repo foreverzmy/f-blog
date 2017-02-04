@@ -6,6 +6,7 @@ const router = new Router();
 
 router.get('/', async ctx => {
   let articles = await getArticles(ctx);
+  console.log('3')
   ctx.state = {
     title: '主页',
     user: ctx.session.user,
